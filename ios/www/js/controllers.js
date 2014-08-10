@@ -33,11 +33,175 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('HomeCtrl', function($scope,$ionicModal) {
+	
+	$scope.$on('$viewContentLoaded', function(e, d) {
+		
+		var stage = new PIXI.Stage(0xFFFFFF, true);
+		stage.setInteractive(true);
+		
+		// create a renderer instance
+		var renderer = PIXI.autoDetectRenderer(400, 300);
+
+		var canvas = document.getElementById('canvas');
+		// add the renderer view element to the DOM
+		
+		angular.element(canvas).html('');
+		canvas.appendChild(renderer.view);
+		
+		renderer.view.style.display = "block";
+
+		requestAnimFrame(animate);
+
+		// create a texture from an image path
+		var texture = PIXI.Texture.fromImage("/img/sxl.png");
+
+		// create a new Sprite using the texture
+		var bunny = new PIXI.Sprite(texture);
+		// enable the bunny to be interactive.. this will allow it to respond to mouse and touch events
+		bunny.interactive = true;
+		// this button mode will mean the hand cursor appears when you rollover the bunny with your mouse
+		bunny.buttonMode = true;
+
+		// center the sprites anchor point
+		bunny.anchor.x = 0.5;
+		bunny.anchor.y = 0.5;
+
+		// move the sprite to the center of the screen
+		bunny.position.x = 200;
+		bunny.position.y = 150;
+
+		stage.addChild(bunny);
+
+
+		var graphics = new PIXI.Graphics();
+	
+		draw_life(graphics);
+
+		stage.addChild(graphics);
+	
+		// let's create moving shape
+		var thing = new PIXI.Graphics();
+		stage.addChild(thing);
+		thing.position.x = 400/2;
+		thing.position.y = 300/2;
+	
+		var count = 0;
+		
+		function animate() {
+		    requestAnimFrame(animate);
+
+		    // just for fun, let's rotate mr rabbit a little
+		    // bunny.rotation += 0.005;
+
+				bunny.scale = new PIXI.Point(.7,1);
+				bunny.alpha = .9;
+				
+				// bunny.position = new PIXI.Point(300,150);
+				 
+		    // render the stage
+		    renderer.render(stage);
+			
+			 
+			
+		}
+		
+		function draw_life(graphics){
+			graphics.beginFill(0xB5AA75);
+			graphics.lineStyle(2, 0x8BB575, 1);
+
+			// // draw a rectangle
+			// graphics.drawRect(50, 20, 300, 10);
+		
+			var l = 11;
+			var top = 50;
+			for(var i = 0; i < l; i++){
+				graphics.drawRect(150, top + 20*i, 100, 10);
+				
+				var tween = new TWEEN.Tween(graphics)
+					.to({ x: 300 }, 4000)
+					.delay(Math.random() * 1000)
+					// .onUpdate(updateCallback)
+					.easing(TWEEN.Easing.Back.Out)
+					.start();
+					
+					
+			}
+		}
+	
+	});
+	
+	$scope.create_account = function(){
+		alert('创建用户成功，马上开启死亡时钟之旅');
+		console.log('create_account ing.....');
+		
+		$scope.modal.hide();
+	}
+	
+	localStorage.removeItem('user');
+	// localStorage.setItem('user',{
+// 		name:'alred sang',
+// 		birthday:'1986-03-17'
+// 	});
+//	
+	// $scope.create_role = function(){
+
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
+	
+	$ionicModal.fromTemplateUrl('templates/home/create_role.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+	
+	setTimeout(function(){
+		return
+		if(localStorage.getItem('user')){
+			alert('user exist');
+		}else{
+			alert('user not exiest');
+			$scope.modal.show();
+		}
+	 
+	},1000);
+})
+
+.controller('SecondCtrl', function($scope,$ionicNavBarDelegate) {
+
+	$scope.$on('$viewContentLoaded', function(e, d) {
+	  console.log('SecondCtrl viewContentLoaded......');
+	
+		$ionicNavBarDelegate.setTitle('second page');
+		var back_btn = document.getElementsByTagName('ion-nav-bar')[0];	
+	
+		var right_btn = angular.element(back_btn).find('h1')[0];
+		angular.element(right_btn).html('second');
+	});
+})
+
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
-    { title: '默认方式', id: 1 },
-    { title: '自定义返回且无右侧按钮', id: 2 },
-    { title: '自定义返回和右侧按钮', id: 3 }
+    { title: '设置', id: 1 },
+    { title: '音量音效', id: 2 },
+    { title: '个人信息', id: 3 }
   ];
 	
 	$scope.$on('$viewContentLoaded', function(e, d) {
@@ -92,3 +256,10 @@ angular.module('starter.controllers', [])
 	 
 })
 
+/**** Home ****/ 
+.controller('CreateRoleCtrl', function($scope,$ionicModal) {
+
+	
+		
+		
+})

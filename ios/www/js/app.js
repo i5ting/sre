@@ -56,6 +56,38 @@ var app = angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+    .state('app.index', {
+      url: "/home",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/index.html",
+          controller: 'HomeCtrl'
+        }
+      }
+    })
+		
+		/***** home *****/
+		
+    .state('app.create_role', {
+      url: "/create_role",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/home/create_role.html",
+          controller: 'CreateRoleCtrl'
+        }
+      }
+    })
+		
+		/***** other *****/
+    .state('app.second', {
+      url: "/second",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/second.html",
+          controller: 'SecondCtrl'
+        }
+      }
+    })
 
     .state('app.single', {
       url: "/playlists/:playlistId",
@@ -67,7 +99,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers'])
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/home');
 });
 //
 app.factory('$lt_ionicViewServicesss', [
