@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -43,6 +42,7 @@
 		9B68F4E75C274DD0A9069C56 /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = FABCADD075C9424F817DF423 /* IonicKeyboard.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		F2BDD677E8EE4027BE4578CE /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C067CBB65154009BEF0C851 /* UIWebViewExtension.m */; };
+		6A1CFDD50E4241B7978BF247 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFE734692EF488DA50CFF41 /* CDVStatusBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +115,8 @@
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = HelloCordova/config.xml; sourceTree = "<group>"; };
 		FABCADD075C9424F817DF423 /* IonicKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IonicKeyboard.m; path = com.ionic.keyboard/IonicKeyboard.m; sourceTree = "<group>"; };
+		DAFE734692EF488DA50CFF41 /* CDVStatusBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVStatusBar.m"; path = "org.apache.cordova.statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		36ADCDA2235D4364A0CD9083 /* CDVStatusBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVStatusBar.h"; path = "org.apache.cordova.statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,8 @@
 				0FDF895949B242D58ABCFE77 /* CDVLogger.h */,
 				CE4715E0A4D547B58639C875 /* CDVDevice.m */,
 				50C0CBB4F13C461481046487 /* CDVDevice.h */,
+				DAFE734692EF488DA50CFF41 /* CDVStatusBar.m */,
+				36ADCDA2235D4364A0CD9083 /* CDVStatusBar.h */,
 			);
 			name = Plugins;
 			path = HelloCordova/Plugins;
@@ -446,6 +450,7 @@
 				F2BDD677E8EE4027BE4578CE /* UIWebViewExtension.m in Sources */,
 				3C0EF5F2CF2D418E8A50D6B2 /* CDVLogger.m in Sources */,
 				4C12363E58E54180BC23990A /* CDVDevice.m in Sources */,
+				6A1CFDD50E4241B7978BF247 /* CDVStatusBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
