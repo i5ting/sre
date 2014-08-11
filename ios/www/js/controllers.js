@@ -34,6 +34,20 @@ angular.module('starter.controllers', [])
   };
 })
 
+
+.controller('UserInfoCtrl', function($scope, $ionicModal, $timeout) {
+  // Form data for the login modal
+	
+	$scope.user = JSON.parse(window.localStorage['user']);
+	
+	$scope.$on('$viewContentLoaded', function(e, d) {
+	  console.log('UserInfoCtrl viewContentLoaded......');
+		// $scope.user = localStorage.getItem('user');
+		
+		
+	});
+})
+
 .controller('HomeCtrl', function($scope,$ionicModal) {
 	var stage = new PIXI.Stage(0xFFFFFF, true);
 	stage.setInteractive(true);
@@ -171,18 +185,13 @@ angular.module('starter.controllers', [])
 
 				elems.push(elem);
 			}
-
 		}
 
 		function animate1( time ) {
-
 			requestAnimationFrame( animate );
-
 			TWEEN.update( time );
-
 		}
 		
-	
 	});
 	
 	$scope.create_account = function(){
@@ -190,14 +199,13 @@ angular.module('starter.controllers', [])
 		console.log('create_account ing.....');
 		
 		var user = {
-			'name':$scope.user_name,
-			'city':$scope.user_city,
-			'birthday':$scope.user_birthday,
-			'avatar':$scope.user_avatar
+			'name':document.getElementById('user_name').value,
+			'city':document.getElementById('user_city').value,
+			'birthday':document.getElementById('user_birthday').value,
+			'avatar':document.getElementById('user_avatar').value
 		}
 		
-		localStorage.setItem('user',user);
-		
+		localStorage.setItem('user',JSON.stringify(user));
 		
 		$scope.modal.hide();
 	}
@@ -266,7 +274,7 @@ angular.module('starter.controllers', [])
   $scope.playlists = [
     { title: '设置', id: 1 },
     { title: '音量音效', id: 2 },
-    { title: '个人信息', id: 3 }
+    { title: '个人信息', id: 3 ,url: '#/app/user_info'}
   ];
 	
 	$scope.$on('$viewContentLoaded', function(e, d) {
