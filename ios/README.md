@@ -79,4 +79,9 @@ https://github.com/mrdoob/stats.js
 
 
 
+## history
 
+- v0.0.2
+	- 增加用户角色信息
+- v0.0.1
+	- 增加pixi游戏引擎和TWEEN库

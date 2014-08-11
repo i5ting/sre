@@ -189,10 +189,20 @@ angular.module('starter.controllers', [])
 		alert('创建用户成功，马上开启死亡时钟之旅');
 		console.log('create_account ing.....');
 		
+		var user = {
+			'name':$scope.user_name,
+			'city':$scope.user_city,
+			'birthday':$scope.user_birthday,
+			'avatar':$scope.user_avatar
+		}
+		
+		localStorage.setItem('user',user);
+		
+		
 		$scope.modal.hide();
 	}
 	
-	localStorage.removeItem('user');
+	// localStorage.removeItem('user');
 	// localStorage.setItem('user',{
 // 		name:'alred sang',
 // 		birthday:'1986-03-17'
@@ -227,11 +237,12 @@ angular.module('starter.controllers', [])
   });
 	
 	setTimeout(function(){
-		return
+		
 		if(localStorage.getItem('user')){
-			alert('user exist');
+			// alert('user exist');
+		
 		}else{
-			alert('user not exiest');
+			// alert('user not exiest');
 			$scope.modal.show();
 		}
 	 
