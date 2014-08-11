@@ -34,27 +34,28 @@ angular.module('starter.controllers', [])
 })
 
 .controller('HomeCtrl', function($scope,$ionicModal) {
+	var stage = new PIXI.Stage(0xFFFFFF, true);
+	stage.setInteractive(true);
+	
+	// create a renderer instance
+	var renderer = PIXI.autoDetectRenderer(320, 600);
+
+	var canvas = document.getElementById('canvas');
+	// add the renderer view element to the DOM
+	
+	angular.element(canvas).html('');
+	canvas.appendChild(renderer.view);
+	
 	
 	$scope.$on('$viewContentLoaded', function(e, d) {
 		
-		var stage = new PIXI.Stage(0xFFFFFF, true);
-		stage.setInteractive(true);
-		
-		// create a renderer instance
-		var renderer = PIXI.autoDetectRenderer(400, 300);
-
-		var canvas = document.getElementById('canvas');
-		// add the renderer view element to the DOM
-		
-		angular.element(canvas).html('');
-		canvas.appendChild(renderer.view);
 		
 		renderer.view.style.display = "block";
 
 		requestAnimFrame(animate);
 
 		// create a texture from an image path
-		var texture = PIXI.Texture.fromImage("/img/sxl.png");
+		var texture = PIXI.Texture.fromImage("img/sxl.png");
 
 		// create a new Sprite using the texture
 		var bunny = new PIXI.Sprite(texture);
@@ -68,8 +69,8 @@ angular.module('starter.controllers', [])
 		bunny.anchor.y = 0.5;
 
 		// move the sprite to the center of the screen
-		bunny.position.x = 200;
-		bunny.position.y = 150;
+		bunny.position.x = 150;
+		bunny.position.y = 200;
 
 		stage.addChild(bunny);
 
@@ -84,15 +85,15 @@ angular.module('starter.controllers', [])
 		var thing = new PIXI.Graphics();
 		stage.addChild(thing);
 		thing.position.x = 400/2;
-		thing.position.y = 300/2;
+		thing.position.y = 400/2;
 	
 		var count = 0;
 		
-		function animate() {
+		function animate(time) {
 		    requestAnimFrame(animate);
 
 		    // just for fun, let's rotate mr rabbit a little
-		    // bunny.rotation += 0.005;
+		     bunny.rotation += 0.005;
 
 				bunny.scale = new PIXI.Point(.7,1);
 				bunny.alpha = .9;
@@ -102,6 +103,9 @@ angular.module('starter.controllers', [])
 		    // render the stage
 		    renderer.render(stage);
 			
+			// requestAnimationFrame( animate );
+
+			TWEEN.update( time );
 			 
 			
 		}
@@ -113,21 +117,70 @@ angular.module('starter.controllers', [])
 			// // draw a rectangle
 			// graphics.drawRect(50, 20, 300, 10);
 		
-			var l = 11;
-			var top = 50;
-			for(var i = 0; i < l; i++){
-				graphics.drawRect(150, top + 20*i, 100, 10);
+
+			init();
+			animate();
+		
+		}
+		
+		
+		var elems = [];
+
+		function init() {
+
+			elems = [];
+			
+			for(var i = 0;i < 10;i++ ){
+			 	var startValue = 300 + (Math.random() - Math.random()) * 250;
+				var endValue = 300 + (Math.random() - Math.random()) * 250;
+
+				var domElement = document.createElement('div');
+				var bg = (Math.random() * 0xffffff) >> 0;
 				
-				var tween = new TWEEN.Tween(graphics)
-					.to({ x: 300 }, 4000)
+				domElement.style.position = 'absolute';
+				domElement.style.top = 71+30*i+ 'px';
+				domElement.style.left =  '75px';
+				domElement.style.background = '#' + bg.toString(16);
+				domElement.style.width = '150px';
+				domElement.style.height = '20px';
+
+				var elem = { x: 50, domElement: domElement };
+
+				var updateCallback = function() {
+					this.domElement.style.left = this.x + 'px';
+				}
+
+				var tween = new TWEEN.Tween(elem)
+					.to({ x: 151 }, 4000)
 					.delay(Math.random() * 1000)
-					// .onUpdate(updateCallback)
+					.onUpdate(updateCallback)
 					.easing(TWEEN.Easing.Back.Out)
 					.start();
-					
-					
+
+				var tweenBack = new TWEEN.Tween(elem, false)
+					.to({ x: startValue}, 4000)
+					.delay(Math.random() * 1000)
+					.onUpdate(updateCallback)
+					.easing(TWEEN.Easing.Elastic.InOut);
+
+				// tween.chain(tweenBack);
+				// tweenBack.chain(tween);
+
+				canvas.appendChild(elem.domElement);
+
+				elems.push(elem);
 			}
+
 		}
+
+		function animate1( time ) {
+
+			requestAnimationFrame( animate );
+
+			TWEEN.update( time );
+
+		}
+		
 	
 	});
 	

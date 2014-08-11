@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+var app = angular.module('starter', ['ionic', 'starter.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -56,6 +56,38 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+    .state('app.index', {
+      url: "/home",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/index.html",
+          controller: 'HomeCtrl'
+        }
+      }
+    })
+		
+		/***** home *****/
+		
+    .state('app.create_role', {
+      url: "/create_role",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/home/create_role.html",
+          controller: 'CreateRoleCtrl'
+        }
+      }
+    })
+		
+		/***** other *****/
+    .state('app.second', {
+      url: "/second",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/second.html",
+          controller: 'SecondCtrl'
+        }
+      }
+    })
 
     .state('app.single', {
       url: "/playlists/:playlistId",
@@ -67,6 +99,19 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/home');
 });
+//
+app.factory('$lt_ionicViewServicesss', [
+	function() {
+		return function(){
+	    this.getMagicNumber = function() {
+	        return magicNumber;
+	    };
 
+	}
+
+}]);
+
+//
+// app.service('lt_nav_service', LTNavigationService);
