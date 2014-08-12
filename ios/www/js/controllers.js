@@ -34,17 +34,12 @@ angular.module('starter.controllers', [])
   };
 })
 
-
 .controller('UserInfoCtrl', function($scope, $ionicModal, $timeout) {
-  // Form data for the login modal
-	
 	$scope.user = JSON.parse(window.localStorage['user']);
 	
 	$scope.$on('$viewContentLoaded', function(e, d) {
 	  console.log('UserInfoCtrl viewContentLoaded......');
-		// $scope.user = localStorage.getItem('user');
-		
-		
+	
 	});
 })
 
@@ -255,6 +250,38 @@ angular.module('starter.controllers', [])
 		}
 	 
 	},1000);
+	
+	
+	if(JSON.parse(window.localStorage['user'])){
+		var user = JSON.parse(window.localStorage['user']);
+		var birthday = user.birthday;
+		// alert(birthday)
+		var year = birthday.substring(0,4)
+		var month = birthday.substring(4,6)
+		var day = birthday.substring(6,8)
+		
+		var old = new Date();
+		old.setFullYear(year);
+		old.setMonth(month);
+		old.setDate(day);
+		
+	
+		var all_days = 80*365;
+		
+		var d = new Date();
+		
+		var y = d.getFullYear();
+		var m = d.getMonth();
+		var dd = d.getDate();
+		
+		var ke_yong = (80 - (y - parseInt(year) ) )*365 + (12-m)*30 + (31-dd)
+		
+		$scope.leaving_day = all_days - ke_yong;
+		 
+		alert('您还可以活着的最多天数： '+$scope.leaving_day);
+			 
+	}
+	
 })
 
 .controller('SecondCtrl', function($scope,$ionicNavBarDelegate) {

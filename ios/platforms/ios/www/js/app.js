@@ -88,6 +88,16 @@ var app = angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+		/***** other *****/
+    .state('app.user_info', {
+      url: "/user_info",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/user_info.html",
+          controller: 'UserInfoCtrl'
+        }
+      }
+    })
 
     .state('app.single', {
       url: "/playlists/:playlistId",

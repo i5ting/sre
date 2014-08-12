@@ -1,12 +1,6 @@
 angular.module('starter.controllers', [])
 
 
-
-
-
-
-
-
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
   $scope.loginData = {};
@@ -38,6 +32,15 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+})
+
+.controller('UserInfoCtrl', function($scope, $ionicModal, $timeout) {
+	$scope.user = JSON.parse(window.localStorage['user']);
+	
+	$scope.$on('$viewContentLoaded', function(e, d) {
+	  console.log('UserInfoCtrl viewContentLoaded......');
+	
+	});
 })
 
 .controller('HomeCtrl', function($scope,$ionicModal) {
@@ -177,28 +180,32 @@ angular.module('starter.controllers', [])
 
 				elems.push(elem);
 			}
-
 		}
 
 		function animate1( time ) {
-
 			requestAnimationFrame( animate );
-
 			TWEEN.update( time );
-
 		}
 		
-	
 	});
 	
 	$scope.create_account = function(){
 		alert('创建用户成功，马上开启死亡时钟之旅');
 		console.log('create_account ing.....');
 		
+		var user = {
+			'name':document.getElementById('user_name').value,
+			'city':document.getElementById('user_city').value,
+			'birthday':document.getElementById('user_birthday').value,
+			'avatar':document.getElementById('user_avatar').value
+		}
+		
+		localStorage.setItem('user',JSON.stringify(user));
+		
 		$scope.modal.hide();
 	}
 	
-	localStorage.removeItem('user');
+	// localStorage.removeItem('user');
 	// localStorage.setItem('user',{
 // 		name:'alred sang',
 // 		birthday:'1986-03-17'
@@ -233,15 +240,48 @@ angular.module('starter.controllers', [])
   });
 	
 	setTimeout(function(){
-		return
+		
 		if(localStorage.getItem('user')){
-			alert('user exist');
+			// alert('user exist');
+		
 		}else{
-			alert('user not exiest');
+			// alert('user not exiest');
 			$scope.modal.show();
 		}
 	 
 	},1000);
+	
+	
+	if(JSON.parse(window.localStorage['user'])){
+		var user = JSON.parse(window.localStorage['user']);
+		var birthday = user.birthday;
+		// alert(birthday)
+		var year = birthday.substring(0,4)
+		var month = birthday.substring(4,6)
+		var day = birthday.substring(6,8)
+		
+		var old = new Date();
+		old.setFullYear(year);
+		old.setMonth(month);
+		old.setDate(day);
+		
+	
+		var all_days = 80*365;
+		
+		var d = new Date();
+		
+		var y = d.getFullYear();
+		var m = d.getMonth();
+		var dd = d.getDate();
+		
+		var ke_yong = (80 - (y - parseInt(year) ) )*365 + (12-m)*30 + (31-dd)
+		
+		$scope.leaving_day = all_days - ke_yong;
+		 
+		alert('您还可以活着的最多天数： '+$scope.leaving_day);
+			 
+	}
+	
 })
 
 .controller('SecondCtrl', function($scope,$ionicNavBarDelegate) {
@@ -261,7 +301,7 @@ angular.module('starter.controllers', [])
   $scope.playlists = [
     { title: '设置', id: 1 },
     { title: '音量音效', id: 2 },
-    { title: '个人信息', id: 3 }
+    { title: '个人信息', id: 3 ,url: '#/app/user_info'}
   ];
 	
 	$scope.$on('$viewContentLoaded', function(e, d) {
