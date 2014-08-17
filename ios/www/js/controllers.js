@@ -1,3 +1,4 @@
+
 angular.module('starter.controllers', [])
 
 
@@ -43,7 +44,8 @@ angular.module('starter.controllers', [])
 	});
 })
 
-.controller('HomeCtrl', function($scope,$ionicModal) {
+.controller('HomeCtrl', function($scope,$ionicModal,DateUtils) {
+	
 	var stage = new PIXI.Stage(0xFFFFFF, true);
 	stage.setInteractive(true);
 	
@@ -126,11 +128,9 @@ angular.module('starter.controllers', [])
 
 			// // draw a rectangle
 			// graphics.drawRect(50, 20, 300, 10);
-		
-
+	
 			init();
 			animate();
-		
 		}
 		
 		
@@ -255,32 +255,14 @@ angular.module('starter.controllers', [])
 	if(JSON.parse(window.localStorage['user'])){
 		var user = JSON.parse(window.localStorage['user']);
 		var birthday = user.birthday;
+		
 		// alert(birthday)
-		var year = birthday.substring(0,4)
-		var month = birthday.substring(4,6)
-		var day = birthday.substring(6,8)
-		
-		var old = new Date();
-		old.setFullYear(year);
-		old.setMonth(month);
-		old.setDate(day);
-		
-	
-		var all_days = 80*365;
-		
-		var d = new Date();
-		
-		var y = d.getFullYear();
-		var m = d.getMonth();
-		var dd = d.getDate();
-		
-		var ke_yong = (80 - (y - parseInt(year) ) )*365 + (12-m)*30 + (31-dd)
-		
-		$scope.leaving_day = all_days - ke_yong;
-		 
-		alert('您还可以活着的最多天数： '+$scope.leaving_day);
+		DateUtils.count_time(birthday)
+
 			 
 	}
+	
+	
 	
 })
 
