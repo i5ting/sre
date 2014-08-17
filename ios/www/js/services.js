@@ -53,7 +53,11 @@ angular.module('clock.no320.services',[])
 	
 	
 		console.log('您还可以活着的最多天数： '+leaving_day);
-		console.log('你还可以活'+ yy +'年，你的生命还剩' + leaving_day+ '天，'+h+'小时，'+mm+'分，'+ss+'秒 ');
+
+		var text = ('你还可以活'+ yy +'年，你的生命还剩' + leaving_day+ '天，'+h+'小时，'+mm+'分，'+ss+'秒 ');
+		
+		var leaving_time_show = document.getElementById('leaving_time_show');
+		angular.element(leaving_time_show).html(text);
 
 		setTimeout(function(){
 			_count_time(birthday)
