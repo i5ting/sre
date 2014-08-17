@@ -50,7 +50,7 @@ angular.module('starter.controllers', [])
 	stage.setInteractive(true);
 	
 	// create a renderer instance
-	var renderer = PIXI.autoDetectRenderer(320, 600);
+	var renderer = PIXI.autoDetectRenderer(320, 300);
 
 	var canvas = document.getElementById('canvas');
 	// add the renderer view element to the DOM
