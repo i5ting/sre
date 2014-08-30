@@ -1,0 +1,34 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">首次使用需要创建人物</h1>
+  </ion-header-bar>
+  <ion-content>
+		<!-- <button ng-click="setNavTitle('Title Changed')">
+      Set title to change!
+    </button> -->
+		<div class="list">
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">昵称</span>
+		    <input type="text" placeholder="杜总" value='alfred' id='user_name'>
+		  </label>
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">城市</span>
+		    <input type="text" placeholder="苏州" value='changchun' id='user_city'>
+		  </label>
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">出生日期</span>
+		    <input type="text" placeholder="19860418" value='19860317' id='user_birthday'>
+		  </label>
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">头像</span>
+				<a class="item item-thumbnail-right" href="#" value='icon.png' id='user_avatar'>
+		      <img src="/img/ionic.png">
+		    </a>
+		  </label>
+		
+			<div class="padding">
+        <button class="button button-block button-positive" ng-click='create_account()'>Create Account</button>
+      </div>
+		</div>
+  </ion-content>
+</ion-modal-view>

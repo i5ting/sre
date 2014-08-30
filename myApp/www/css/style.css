@@ -1,1 +1,38 @@
 /* Empty. Add your own CSS if you like */
+.bar-header{
+/*	background-color:#0c0e17 !important;*/
+}
+
+
+.login_content{
+	display: block;
+	background-image: url(../img/login/login_background.png);
+  background-repeat:no-repeat;
+  background-size:100% auto;
+	height: 520px;
+}
+
+
+.item-input {
+	background-color: transparent;
+	border: 0px;
+}
+
+textarea, input[type="text"]{
+	color: white;
+}
+
+.login_container {
+	margin-top:110px;
+	left:30px;
+	width:260px;
+}
+
+.login_container label{
+	margin: 0;
+	padding: 0;	
+}
+
+hr {
+	 height:1px;border:none;border-top:1px solid #8f8e8f;
+}
