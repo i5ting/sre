@@ -3,13 +3,30 @@
 /*	background-color:#0c0e17 !important;*/
 }
 
+#image_show_container {
+	display: block;
+	width: 212px;
+	height:295px;
+	margin-left: 59px;
+/*	margin-top: 40px;*/
+/*	background:red;*/
+	
+}
+
+.background_content {
+	display: block;
+	background-image: url(../img/information_bg.png);
+  background-repeat:no-repeat;
+  background-size:320px 568px;
+	height: 568px;
+}
 
 .login_content{
 	display: block;
 	background-image: url(../img/login/login_background.png);
   background-repeat:no-repeat;
-  background-size:100% auto;
-	height: 520px;
+  background-size:320px 568px;
+	height: 568px;
 }
 
 

@@ -44,7 +44,7 @@ angular.module('starter.controllers', [])
 	});
 })
 
-.controller('ThreeCtrl', function($scope, $ionicModal, $timeout, $compile) {
+.controller('LoginCtrl', function($scope, $ionicModal, $timeout, $compile) {
  	$scope.right_click = function(){
  		alert('点击登录按钮');
  	}
@@ -53,7 +53,7 @@ angular.module('starter.controllers', [])
 	$scope.$on('$viewContentLoaded', function(e, d) {
 		console.log('PlaylistCtrl viewContentLoaded......');
 		
-		if(d.url == "/app/three"){	
+		if(d.url == "/app/login"){	
 			var back_btn = document.getElementsByTagName('ion-nav-back-button')[0];	
 			angular.element(back_btn).html('<i class="icon ion-ios7-arrow-back"></i>自定义左侧按钮');
 		
@@ -65,21 +65,16 @@ angular.module('starter.controllers', [])
 	
 })
 
-.controller('HomeCtrl', function($scope,$ionicModal,DateUtils) {
+.controller('HomeCtrl', function($scope,$ionicModal,DateUtils,ImageWithTime) {
 	
 	var stage = new PIXI.Stage(0xFFFFFF, true);
 	stage.setInteractive(true);
 	
 	// create a renderer instance
 	var renderer = PIXI.autoDetectRenderer(320, 300);
-
-	var canvas = document.getElementById('canvas');
-	// add the renderer view element to the DOM
+ 
 	
-	angular.element(canvas).html('');
-	canvas.appendChild(renderer.view);
-	
-	
+	/**
 	$scope.$on('$viewContentLoaded', function(e, d) {
 		
 
@@ -216,6 +211,7 @@ angular.module('starter.controllers', [])
 		}
 		
 	});
+	*/
 	
 	$scope.create_account = function(){
 		alert('创建用户成功，马上开启死亡时钟之旅');
@@ -286,10 +282,12 @@ angular.module('starter.controllers', [])
 		
 		// alert(birthday)
 		DateUtils.count_time(birthday)
-
+		ImageWithTime.count_time(birthday)
 			 
 	}
 	
+	
+
 	
 	
 })

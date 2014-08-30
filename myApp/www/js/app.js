@@ -100,12 +100,12 @@ var app = angular.module('starter', ['ionic', 'starter.controllers','clock.no320
     })
 
 		/***** other *****/
-    .state('app.three', {
-      url: "/three",
+    .state('app.login', {
+      url: "/login",
       views: {
         'menuContent' :{
           templateUrl: "templates/three.html",
-          controller: 'ThreeCtrl'
+          controller: 'LoginCtrl'
         }
       }
     })
