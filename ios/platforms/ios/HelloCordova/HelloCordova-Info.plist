@@ -49,7 +49,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>timely.nationsky.com</string>
+	<string>com.nationsky.riclock</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
