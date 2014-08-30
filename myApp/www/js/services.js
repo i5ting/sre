@@ -126,6 +126,7 @@ angular.module('clock.no320.services',[])
 	function _write_to_html(h,mm,ss){
 		var leaving_time_show_first = document.getElementById('image_show_container');
 		var hh;
+		
 		if(ss%3==0){
 			hh = 8;
 		}
