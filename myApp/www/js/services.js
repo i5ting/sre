@@ -46,7 +46,7 @@ angular.module('clock.no320.services',[])
 	 
 		var yy = (80 - (y - parseInt(year) ) ) - 1
 	
-		var h = 24 - d.getHours() - 1;
+		var h = 24 - d.getHours() - 2;
 	
 		var mm =  (60 - d.getMinutes() )
 		var ss =  (60 - d.getSeconds() )
@@ -125,18 +125,30 @@ angular.module('clock.no320.services',[])
 	
 	function _write_to_html(h,mm,ss){
 		var leaving_time_show_first = document.getElementById('image_show_container');
+		var hh;
+		if(ss%3==0){
+			hh = 8;
+		}
+		
+		if(ss%3==1){
+			hh = 15;
+		}
+		
+		if(ss%3==2){
+			hh = 20;
+		}
 		 
 		var t = 'night.png';
-		if(6< h && h <12){
+		if(6< hh && hh <12){
 			t= 'morning.png'
 		}
 		
-		if(12< h && h <18){
+		if(12< hh && hh <18){
 			t= 'moon.png'
 		}
 		
 		
-		if(18< h && h <24){
+		if(18< hh && hh <24){
 			t= 'night.png'
 		}
 		
