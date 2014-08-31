@@ -82,7 +82,7 @@ angular.module('clock.no320.services',[])
 	/**
 	 * _count_time('19860317')
 	 */
-	function _count_time(birthday){
+	function _count_time(birthday,$state){
 		var year = birthday.substring(0,4)
 		var month = birthday.substring(4,6)
 		var day = birthday.substring(6,8)
@@ -115,7 +115,7 @@ angular.module('clock.no320.services',[])
 
 
 
-		_write_to_html(h,mm,ss);
+		_write_to_html(h, mm , ss, $state);
 		
 		setTimeout(function(){
 			_count_time(birthday)
@@ -123,8 +123,21 @@ angular.module('clock.no320.services',[])
 	
 	}
 	
-	function _write_to_html(h,mm,ss){
+	function _write_to_html(h,mm,ss,$scope){
 		var leaving_time_show_first = document.getElementById('image_show_container');
+	
+		
+		console.log('show_last_word = '+ window.show_last_word );
+		if(ss % 15 == 0 && window.show_last_word == false){
+			console.log('remove kkk' + $scope);
+			// localStorage.setItem('kkk','ddd');
+		
+				window.currentState.go('app.second');
+		}else{
+			 window.show_last_word = false;
+			// localStorage.removeItem('kkk');
+		}
+		
 		var hh;
 		
 		if(ss%3==0){
@@ -164,8 +177,47 @@ angular.module('clock.no320.services',[])
 	}
 		
   return {
-		count_time:function(birthday){
-			_count_time(birthday)
+		count_time:function(birthday,$state){
+			_count_time(birthday,$state)
+		}
+	
+  };
+})
+
+
+.factory('StateManager', function($rootScope, DEFAULT_SETTINGS) {
+	
+	/**
+	 * _count_time('19860317')
+	 */
+	function _change($scope, e, d){
+		if(d.url == "/app/index"){
+			window.show_last_word = true;
+	
+			// window.currentState.go('app.second');
+			var back_btn = document.getElementsByTagName('ion-nav-bar')[0];	
+		
+			var right_btn = angular.element(back_btn).find('div')[1];
+			angular.element(right_btn).html('');
+			
+		}else if(d.url == "/app/home"){
+			window.show_last_word = true;
+			
+			var back_btn = document.getElementsByTagName('ion-nav-bar')[0];	
+			var right_btn = angular.element(back_btn).find('div')[1];
+			angular.element(right_btn).html('');
+			
+		}else{
+			// 
+			
+			window.show_last_word = false;
+		}
+	
+	}
+	
+  return {
+		change:function($scope, e, d){
+			_change($scope, e, d);
 		}
 	
   };

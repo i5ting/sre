@@ -65,15 +65,19 @@ angular.module('starter.controllers', [])
 	
 })
 
-.controller('HomeCtrl', function($scope,$ionicModal,DateUtils,ImageWithTime) {
+.controller('HomeCtrl', function($scope,$ionicModal,DateUtils,ImageWithTime,$state, StateManager) {
 	
 	var stage = new PIXI.Stage(0xFFFFFF, true);
 	stage.setInteractive(true);
 	
 	// create a renderer instance
 	var renderer = PIXI.autoDetectRenderer(320, 300);
- 
 	
+	$scope.$on('$viewContentLoaded', function(e, d) {
+	  console.log('HOME ctrl viewContentLoaded......');
+		StateManager.change($scope, e, d);
+	});
+		
 	/**
 	$scope.$on('$viewContentLoaded', function(e, d) {
 		
@@ -275,34 +279,44 @@ angular.module('starter.controllers', [])
 	 
 	},1000);
 	
+	window.currentState = $state;
+	window.show_last_word = true;
 	
+	$scope.state = function(){
+		alert(111);
+	};
 	if(JSON.parse(window.localStorage['user'])){
 		var user = JSON.parse(window.localStorage['user']);
 		var birthday = user.birthday;
 		
 		// alert(birthday)
 		DateUtils.count_time(birthday)
-		ImageWithTime.count_time(birthday)
+		ImageWithTime.count_time(birthday,$scope)
 			 
 	}
 	
-	
-
-	
-	
 })
 
-.controller('SecondCtrl', function($scope,$ionicNavBarDelegate) {
+.controller('SecondCtrl', function($scope,$ionicNavBarDelegate, $state) {
 
+	var back_btn = document.getElementsByTagName('ion-nav-bar')[0];
+
+	angular.element(back_btn).bind('click',function(){
+		
+		$state.go('app.index');
+	});
+	
+	
 	$scope.$on('$viewContentLoaded', function(e, d) {
 	  console.log('SecondCtrl viewContentLoaded......');
-	
-		$ionicNavBarDelegate.setTitle('second page');
-		var back_btn = document.getElementsByTagName('ion-nav-bar')[0];	
-	
-		var right_btn = angular.element(back_btn).find('h1')[0];
-		angular.element(right_btn).html('second');
+
+		// $ionicNavBarDelegate.setTitle('second page');
+		
 	});
+
+ 
+
+	
 })
 
 .controller('PlaylistsCtrl', function($scope) {
@@ -341,7 +355,7 @@ angular.module('starter.controllers', [])
 		
 		if(d.url == "/app/playlists/3"){	
 			var back_btn = document.getElementsByTagName('ion-nav-back-button')[0];	
-			angular.element(back_btn).html('<i class="icon ion-ios7-arrow-back"></i>自定义左侧按钮');
+			angular.element(back_btn).html('<i class="icon ion-ios7-arrow-back"></i>返回');
 		
 			var right_btn = angular.element(back_btn).parent().find('div')[1];
 			angular.element(right_btn).html('').append(i);
