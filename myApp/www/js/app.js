@@ -120,6 +120,18 @@ var app = angular.module('starter', ['ionic', 'starter.controllers','clock.no320
       }
     })
 		
+    .state('app.last_word_list', {
+      url: "/last_word_list",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/last_word_list.html",
+          controller: 'LastWordListCtrl'
+        }
+      }
+    })
+		
+		
+		
     .state('app.single', {
       url: "/playlists/:playlistId",
       views: {
@@ -131,6 +143,14 @@ var app = angular.module('starter', ['ionic', 'starter.controllers','clock.no320
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
+	
+	//open database
+	var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024); 
+
+	db.transaction(function (tx) {            
+		tx.executeSql('CREATE TABLE IF NOT EXISTS last_word (id INTEGER PRIMARY KEY AUTOINCREMENT, content Text,date string)');
+	});
+	 
 });
 //
 app.factory('$lt_ionicViewServicesss', [

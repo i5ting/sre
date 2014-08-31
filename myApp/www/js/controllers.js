@@ -44,13 +44,70 @@ angular.module('starter.controllers', [])
 	});
 })
 
+.controller('LastWordListCtrl', function($scope, $ionicModal, $timeout) {
+	
+	$scope.$on('$viewContentLoaded', function(e, d) {
+	  console.log('LastWordListCtrl viewContentLoaded......');
+ 
+		$scope.data = [];
+		var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024); 
 
-.controller('LastWordCtrl', function($scope, $ionicModal, $timeout) {
+		db.transaction(function (tx) {            
+			tx.executeSql('SELECT * FROM last_word order by id desc',[],function(tx,result){
+				console.log(result)
+			  var len=result.rows.length;
+			  var msg = "<p>Found rows: " + len + "</p>";  
+			    
+	      for(var i = 0; i < len ; i++){
+	       	var str = result.rows.item(i);
+					console.log(str)
+					var obj={'title':str['content'],'date':str['date']};
+					
+					$scope.data.push(obj);
+	      }
+						
+			});
+									 
+		});
+		
+		
+	});
+})
+
+
+.controller('LastWordCtrl', function($scope, $ionicModal, $timeout, $state) {
 	 
 	$scope.$on('$viewContentLoaded', function(e, d) {
 	  console.log('LastWordCtrl viewContentLoaded......');
 	
 	});
+	
+	$scope.save_last_word = function(){
+	
+		var d = new Date();
+	
+		var y = d.getFullYear();
+		var m = d.getMonth();
+		var dd = d.getDate();	
+		var h =  d.getHours();
+		var mm = d.getMinutes();
+		var ss = d.getSeconds() ;
+
+		var datetime = y+'-'+m+'-'+dd+' '+h+':'+mm+':'+ss;
+		var c = angular.element(document.getElementById('last_word_content')).val();
+		var sql = "INSERT INTO last_word (content,date) values ('"+c+"','"+datetime+"')";
+		console.log('sql = ' +sql);
+		
+		var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024); 
+
+		db.transaction(function (tx) {            
+			tx.executeSql(sql);
+		});
+		
+		alert('发表成功');
+		$state.go('app.index');
+		
+	}
 })
 
 
@@ -65,7 +122,7 @@ angular.module('starter.controllers', [])
 		
 		if(d.url == "/app/login"){	
 			var back_btn = document.getElementsByTagName('ion-nav-back-button')[0];	
-			angular.element(back_btn).html('<i class="icon ion-ios7-arrow-back"></i>自定义左侧按钮');
+			angular.element(back_btn).html('<i class="icon ion-ios7-arrow-back"></i>');
 		
 			var right_btn = angular.element(back_btn).parent().find('div')[1];
 			angular.element(right_btn).html('').append(i);

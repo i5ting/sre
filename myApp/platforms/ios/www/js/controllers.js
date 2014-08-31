@@ -44,6 +44,16 @@ angular.module('starter.controllers', [])
 	});
 })
 
+
+.controller('LastWordCtrl', function($scope, $ionicModal, $timeout) {
+	 
+	$scope.$on('$viewContentLoaded', function(e, d) {
+	  console.log('LastWordCtrl viewContentLoaded......');
+	
+	});
+})
+
+
 .controller('LoginCtrl', function($scope, $ionicModal, $timeout, $compile) {
  	$scope.right_click = function(){
  		alert('点击登录按钮');
@@ -55,7 +65,7 @@ angular.module('starter.controllers', [])
 		
 		if(d.url == "/app/login"){	
 			var back_btn = document.getElementsByTagName('ion-nav-back-button')[0];	
-			angular.element(back_btn).html('<i class="icon ion-ios7-arrow-back"></i>自定义左侧按钮');
+			angular.element(back_btn).html('<i class="icon ion-ios7-arrow-back"></i>');
 		
 			var right_btn = angular.element(back_btn).parent().find('div')[1];
 			angular.element(right_btn).html('').append(i);
@@ -218,8 +228,16 @@ angular.module('starter.controllers', [])
 	*/
 	
 	$scope.share_last_word = function(){
-
 		$scope.last_word_modal.show();
+	}
+	
+	$scope.dismiss_share_last_word = function(){
+		$scope.last_word_modal.hide();
+	}
+	
+	$scope.write_a_last_word = function(){
+		$scope.dismiss_share_last_word();
+		$state.go('app.lastword');
 	}
 	
 	$scope.create_account = function(){

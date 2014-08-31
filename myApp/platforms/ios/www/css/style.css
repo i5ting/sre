@@ -32,12 +32,17 @@
 }
 
 
-.item-input {
+.login_content .item-input {
 	background-color: transparent;
 	border: 0px;
 }
 
-textarea, input[type="text"]{
+.login_content textarea{
+	color: white;
+}
+
+.login_content > input[type="text"]
+{
 	color: white;
 }
 
