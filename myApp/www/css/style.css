@@ -13,6 +13,8 @@
 	
 }
 
+
+
 .background_content {
 	display: block;
 	background-image: url(../img/information_bg.png);
@@ -30,7 +32,7 @@
 }
 
 
-.item-input {
+/*.item-input {
 	background-color: transparent;
 	border: 0px;
 }
@@ -38,7 +40,7 @@
 textarea, input[type="text"]{
 	color: white;
 }
-
+*/
 .login_container {
 	margin-top:110px;
 	left:30px;
@@ -52,4 +54,27 @@ textarea, input[type="text"]{
 
 hr {
 	 height:1px;border:none;border-top:1px solid #8f8e8f;
+}
+
+/**
+ * last word
+ */
+.last_work_mu {
+	display: block;
+	background-image: url(../img/die.png);
+  background-repeat:no-repeat;
+  background-size:320px 416px;
+	height: 416px;
+}
+
+.last_work_mu_btn {
+	display: block;
+	background-image: url(../img/die2.png);
+  background-repeat:no-repeat;
+  background-size:168px 40px;
+	height: 40px;
+	position: relative;
+	top:300px;
+	left: 71px;
+	z-index:100;
 }

@@ -88,6 +88,17 @@ var app = angular.module('starter', ['ionic', 'starter.controllers','clock.no320
         }
       }
     })
+		
+    .state('app.lastword', {
+      url: "/write_last_word",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/home/write_last_word.html",
+          controller: 'LastWordCtrl'
+        }
+      }
+    })
+		
 		/***** other *****/
     .state('app.user_info', {
       url: "/user_info",

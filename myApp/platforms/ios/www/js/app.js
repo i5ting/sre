@@ -99,6 +99,17 @@ var app = angular.module('starter', ['ionic', 'starter.controllers','clock.no320
       }
     })
 
+		/***** other *****/
+    .state('app.login', {
+      url: "/login",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/three.html",
+          controller: 'LoginCtrl'
+        }
+      }
+    })
+		
     .state('app.single', {
       url: "/playlists/:playlistId",
       views: {

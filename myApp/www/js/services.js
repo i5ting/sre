@@ -132,7 +132,7 @@ angular.module('clock.no320.services',[])
 			console.log('remove kkk' + $scope);
 			// localStorage.setItem('kkk','ddd');
 		
-				window.currentState.go('app.second');
+				// window.currentState.go('app.second');
 		}else{
 			 window.show_last_word = false;
 			// localStorage.removeItem('kkk');

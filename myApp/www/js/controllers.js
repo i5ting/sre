@@ -44,6 +44,16 @@ angular.module('starter.controllers', [])
 	});
 })
 
+
+.controller('LastWordCtrl', function($scope, $ionicModal, $timeout) {
+	 
+	$scope.$on('$viewContentLoaded', function(e, d) {
+	  console.log('LastWordCtrl viewContentLoaded......');
+	
+	});
+})
+
+
 .controller('LoginCtrl', function($scope, $ionicModal, $timeout, $compile) {
  	$scope.right_click = function(){
  		alert('点击登录按钮');
@@ -217,6 +227,19 @@ angular.module('starter.controllers', [])
 	});
 	*/
 	
+	$scope.share_last_word = function(){
+		$scope.last_word_modal.show();
+	}
+	
+	$scope.dismiss_share_last_word = function(){
+		$scope.last_word_modal.hide();
+	}
+	
+	$scope.write_a_last_word = function(){
+		$scope.dismiss_share_last_word();
+		$state.go('app.lastword');
+	}
+	
 	$scope.create_account = function(){
 		alert('创建用户成功，马上开启死亡时钟之旅');
 		console.log('create_account ing.....');
@@ -267,6 +290,17 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
   });
 	
+	
+	
+	$ionicModal.fromTemplateUrl('templates/home/last_word.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.last_word_modal = modal;
+  });
+	
+	
+	
 	setTimeout(function(){
 		
 		if(localStorage.getItem('user')){
@@ -285,6 +319,7 @@ angular.module('starter.controllers', [])
 	$scope.state = function(){
 		alert(111);
 	};
+	
 	if(JSON.parse(window.localStorage['user'])){
 		var user = JSON.parse(window.localStorage['user']);
 		var birthday = user.birthday;

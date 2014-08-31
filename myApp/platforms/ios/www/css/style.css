@@ -2,3 +2,79 @@
 .bar-header{
 /*	background-color:#0c0e17 !important;*/
 }
+
+#image_show_container {
+	display: block;
+	width: 212px;
+	height:295px;
+	margin-left: 59px;
+/*	margin-top: 40px;*/
+/*	background:red;*/
+	
+}
+
+
+
+.background_content {
+	display: block;
+	background-image: url(../img/information_bg.png);
+  background-repeat:no-repeat;
+  background-size:320px 568px;
+	height: 568px;
+}
+
+.login_content{
+	display: block;
+	background-image: url(../img/login/login_background.png);
+  background-repeat:no-repeat;
+  background-size:320px 568px;
+	height: 568px;
+}
+
+
+.item-input {
+	background-color: transparent;
+	border: 0px;
+}
+
+textarea, input[type="text"]{
+	color: white;
+}
+
+.login_container {
+	margin-top:110px;
+	left:30px;
+	width:260px;
+}
+
+.login_container label{
+	margin: 0;
+	padding: 0;	
+}
+
+hr {
+	 height:1px;border:none;border-top:1px solid #8f8e8f;
+}
+
+/**
+ * last word
+ */
+.last_work_mu {
+	display: block;
+	background-image: url(../img/die.png);
+  background-repeat:no-repeat;
+  background-size:320px 416px;
+	height: 416px;
+}
+
+.last_work_mu_btn {
+	display: block;
+	background-image: url(../img/die2.png);
+  background-repeat:no-repeat;
+  background-size:168px 40px;
+	height: 40px;
+	position: relative;
+	top:300px;
+	left: 71px;
+	z-index:100;
+}
