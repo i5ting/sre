@@ -13,6 +13,14 @@ for(var i in argv) {
   }
 }
 
+for(var i in argv) {
+  var input = argv[i]
+  if (input == '-l' || input == '--list') {
+    console.log(fs.readFileSync(userHome + '/.sre').toString())
+    process.exit()
+  }
+}
+
 var file_path = __dirname;
 var current_path = process.cwd();
 
