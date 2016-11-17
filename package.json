@@ -1,6 +1,6 @@
 {
   "name": "sre",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "scripts run easy",
   "main": "index.js",
   "scripts": {
