@@ -14,17 +14,15 @@ for (var i in argv) {
   }
 }
 
-for (var i in argv) {
-  var input = argv[i]
-  if (input === '-l' || input === '--list') {
+for (var j in argv) {
+  if (argv[j] === '-l' || argv[j] === '--list') {
     console.log(fs.readFileSync(userHome + '/.sre').toString())
     process.exit()
   }
 }
 
-for (var i in argv) {
-  var input = argv[i]
-  if (input === '-h' || input === '--help') {
+for (var k in argv) {
+  if (argv[k] === '-h' || argv[k] === '--help') {
     console.log('Usages: sre = scripts run easy')
     console.log('\t sre -h or --help')
     console.log('\t sre -d or --delete')
@@ -39,9 +37,9 @@ var conf = require(currentPath + '/package.json')
 
 console.log('available script:')
 
-for (var _name in conf.scripts){
+for (var _name in conf.scripts) {
   console.log('\t' + _name)
-  var cmd = 'alias ' + _name + '=\'npm run ' + _name + '\'';
+  var cmd = 'alias ' + _name + '=\'npm run ' + _name + '\''
   lines.push(cmd)
 }
 
