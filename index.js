@@ -1,9 +1,18 @@
 #!/usr/bin/env node
 var fs = require('fs')
 var userHome = require('user-home')
+var currentPath = process.cwd()
 var argv = process.argv
 argv.shift()
 var lines = []
+
+var sre = fs.readFileSync(userHome + '/.sre_path').toString()
+
+if (sre === "") {
+  console.log("Path " + currentPath)
+} else {
+  console.log("Path " + sre)
+}
 
 for (var i in argv) {
   var input = argv[i]
@@ -31,8 +40,6 @@ for (var k in argv) {
   }
 }
 
-var currentPath = process.cwd()
-
 var conf = require(currentPath + '/package.json')
 
 console.log('available script:')
@@ -43,4 +50,5 @@ for (var _name in conf.scripts) {
   lines.push(cmd)
 }
 
+fs.writeFileSync(userHome + '/.sre_path', currentPath)
 fs.writeFileSync(userHome + '/.sre', lines.join('\n'))
