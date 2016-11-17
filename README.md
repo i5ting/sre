@@ -8,6 +8,14 @@ sre = scripts run easy
 
 ## Usage 
 
+```
+$ sre -h
+Usages: sre = scripts run easy
+	 sre -h or --help
+	 sre -d or --delete
+	 sre -l or --list
+```
+
 list npm scripts with pwd/package.json
 
 ```
@@ -20,28 +28,6 @@ available script:
 
 then you can use `start` = `npm run start`
 
-## Code
-
-kill by some port
-
-```
-  #!/usr/bin/env node
-
-  var kp = require("kp");
-  kp(3980);
-```
-
-or
-
-kill by some port with sudo
-
-```
-  #!/usr/bin/env node
-
-  var kp = require("kp");
-  kp(3980, 'sudo');
-```
-
 ## Contributing
 
 1. Fork it
@@ -52,7 +38,6 @@ kill by some port with sudo
 
 ## 版本历史
 
-- v1.1.0 实现可编程调用
 - v1.0.0 初始化版本cli,实现kp导出
 
 ## 欢迎fork和反馈
