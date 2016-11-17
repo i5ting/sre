@@ -21,6 +21,17 @@ for(var i in argv) {
   }
 }
 
+for(var i in argv) {
+  var input = argv[i]
+  if (input == '-h' || input == '--help') {
+    console.log("Usages: sre = scripts run easy")
+    console.log("\t sre -h or --help")
+    console.log("\t sre -d or --delete")
+    console.log("\t sre -l or --list")
+    process.exit()
+  }
+}
+
 var file_path = __dirname;
 var current_path = process.cwd();
 
