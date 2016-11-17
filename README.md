@@ -28,6 +28,13 @@ available script:
 
 then you can use `start` = `npm run start`
 
+```
+$ sre -l
+alias start='npm run start'
+alias test='npm run test'
+alias postinstall='npm run postinstall'
+```
+
 ## Contributing
 
 1. Fork it
