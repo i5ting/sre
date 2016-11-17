@@ -4,6 +4,15 @@ var userHome = require('user-home');
 var argv = process.argv;
 argv.shift();
 
+for(var i in argv) {
+  var input = argv[i]
+  if (input == '-d' || input == '--delete') {
+    console.log("remove ~/.sre alias")
+    fs.writeFileSync(userHome + '/.sre', "");
+    process.exit()
+  }
+}
+
 var file_path = __dirname;
 var current_path = process.cwd();
 
