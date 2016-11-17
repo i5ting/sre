@@ -1,9 +1,6 @@
 #!/usr/bin/env node
 var fs = require('fs')
-var exec = require('child_process').exec
-
-
-var nodepath = require('path');
+var userHome = require('user-home');
 var argv = process.argv;
 argv.shift();
 
@@ -12,29 +9,14 @@ var current_path = process.cwd();
 
 var conf = require(current_path + '/package.json')
 
-var lines = []
+console.log("available script:")
 
-function e(cmd) {
-  exec(cmd, function (error, stdout, stderr) {
-    if (error !== null) {
-      console.log('exec error: ' + error)
-    }
-    console.log(stdout)
-    console.log(stderr)
-  });
+
+var lines = []
+for(var _name in conf.scripts){
+  console.log("\t" + _name)
+  var cmd = "alias " + _name + "='npm run " + _name + "'"
+  lines.push(cmd)
 }
 
-// lines.push("exec $SHELL")
-//
-fs.writeFileSync(current_path + '/sre.sh', lines.join('\n'));
-
-var exec = require('child_process').exec
-
-exec('chmod +x sre.sh && source ' + current_path +'/sre.sh', function (error, stdout, stderr) {
-  if (error !== null) {
-    console.log('exec error: ' + error)
-  }
-  console.log(stdout)
-  console.log(stderr)
-});
-
+fs.writeFileSync(userHome + '/.sre', lines.join('\n'));
