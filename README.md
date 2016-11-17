@@ -2,6 +2,8 @@
 
 sre = scripts run easy
 
+只支持*nix
+
 ## Install
 
     [sudo]npm install -g sre
