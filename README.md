@@ -1,3 +1,4 @@
-# ionic examles
+# sre
 
-a clock
+scripts run easy
+
